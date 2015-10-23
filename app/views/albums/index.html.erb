@@ -1,0 +1,36 @@
+<%= will_paginate @album %>
+<h1>Listing Albums</h1>
+<%= form_tag(albums_path, :method => "get", id: "search-form") do %>
+  <%= text_field_tag :search, params[:search], placeholder: "Search albums" %>
+  <%= submit_tag "Search", :name => nil %>
+<% end %>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Albumname</th>
+      <th>Ownername</th>
+      <th>Created At</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @albums.each do |album| %>
+      <tr>
+        <td><%= album.albumname %></td>
+        <td><%= album.ownername %></td>
+        <td><%= album.created_at %></td>
+        <td><%= link_to 'Show', album, :class => 'btn btn-primary' %></td>
+        <% if current_user.id == album.user_id %>
+          <td><%= link_to 'Edit', edit_album_path(album), :class => 'btn btn-primary' %></td>
+          <td><%= link_to 'Destroy', album, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %></td>
+          <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Album', new_album_path, :class => 'btn btn-primary' %>

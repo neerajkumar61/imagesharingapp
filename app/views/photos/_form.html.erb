@@ -1,0 +1,36 @@
+<%= form_for(@photo) do |f| %>
+  <% if @photo.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@photo.errors.count, "error") %> prohibited this photo from being saved:</h2>
+
+      <ul>
+      <% @photo.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :image, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.file_field :image, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:image) %>
+  </div><br><br><br><br>
+
+  <div class="form-group">
+    <%= f.label :tag_line_for_photo, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :tag_line_for_photo, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:tag_line_for_photo) %>
+  </div><br><br><br><br>
+
+
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <%= f.submit 'Add Photo', :class => 'btn btn-primary' %>
+    </div>
+  </div>
+<% end %>

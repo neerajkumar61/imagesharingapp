@@ -1,0 +1,40 @@
+<%= form_for @album, :html => {:multipart => true} do |f| %>
+  <% if @album.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@album.errors.count, "error") %> prohibited this album from being saved:</h2>
+
+      <ul>
+      <% @album.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <%= f.hidden_field :user_id , :value => current_user.id%>
+  <div class="form-group">
+    <%= f.label :albumname, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :albumname, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:albumname) %>
+  </div><br><br><br><br>
+
+   <div class="form-group">
+    <%= f.label :ownername, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :ownername, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:ownername) %>
+  </div><br><br><br><br>
+
+
+  
+
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <center><%= f.submit 'Add Album', :class => 'btn btn-primary' %></center>
+    </div>
+  </div>
+
+<% end %>

@@ -1,0 +1,12 @@
+<p>
+  <strong>Image:</strong>
+  <%= image_tag(@photo.image_url, :width => 200) if @photo.image.present? %>
+</p>
+
+<p>
+  <strong>Tag line for photo:</strong>
+  <%= @photo.tag_line_for_photo %>
+</p>
+
+<%= link_to 'Edit', edit_photo_path(@photo), :class => 'btn btn-primary' %> |
+<%= link_to 'Back', albums_path, :class => 'btn btn-primary' %>
