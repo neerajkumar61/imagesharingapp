@@ -22,10 +22,10 @@
         <td><%= album.ownername %></td>
         <td><%= album.created_at %></td>
         <td><%= link_to 'Show', album, :class => 'btn btn-primary' %></td>
-        <% if current_user.id == album.user_id %>
+        <% if user_signed_in? && (current_user.id == album.user_id) %>
           <td><%= link_to 'Edit', edit_album_path(album), :class => 'btn btn-primary' %></td>
           <td><%= link_to 'Destroy', album, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %></td>
-          <% end %>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

@@ -1,4 +1,3 @@
-<p id="notice"><%= notice %></p>
 <table class="table table-striped">
 	<div class="form-group">
 		<p>
@@ -13,6 +12,12 @@
 		  <%= @album.ownername %>
 		</p>
 	</div>
+  <div class="form-group">
+    <p>
+      <strong>Album Created at :</strong>
+      <%= @album.created_at %>
+    </p>
+  </div>
 </table><br><br>
 
 <div class="form-group">
@@ -20,51 +25,53 @@
     <% @album.photos.each do |photo| %>
       <%= image_tag(photo.image.url, :width => 100, :height => 100) %>
       <%= photo.tag_line_for_photo %>
+       <%= photo.created_at %>
       <% if current_user.id == @album.user_id %>
         <%= link_to 'Edit', edit_photo_path(photo), :class => 'btn btn-primary' %> | <%= link_to 'Back', albums_path, :class => 'btn btn-primary' %>
       <% end %>
-
-     
-      
-
     <% end %>
   <% end %>
 </div>
-<% if current_user.id == @album.user_id %>
-  <h2>Add Image:</h2>
-  <%= form_for([@album, Photo.new]) do |f| %>
 
-    <div class="form-group">
-      <%= f.label :image, :class => 'control-label col-lg-2' %>
-      <div class="col-lg-10">
-        <%= f.file_field :image, :class => 'form-control' %>
-      </div>
-      <%=f.error_span(:image) %>
-    </div><br><br><br><br>
 
-    <div class="form-group">
-      <%= f.label :tag_line_for_photo, :class => 'control-label col-lg-2' %>
-      <div class="col-lg-10">
-        <%= f.text_field :tag_line_for_photo, :class => 'form-control' %>
-      </div>
-      <%=f.error_span(:tag_line_for_photo) %>
-    </div><br><br><br><br>
+<% if @album.photos.count <= 2 %>
+  <% if current_user.id == @album.user_id %>
+    <h2>Add Image:</h2>
+    <%= form_for([@album, Photo.new]) do |f| %>
 
-    <div class="form-group">
-      <div class="col-lg-offset-2 col-lg-10">
-        <center><%= f.submit 'Add Photo', :class => 'btn btn-primary' %></center>
+      <div class="form-group">
+        <%= f.label :image, :class => 'control-label col-lg-2' %>
+        <div class="col-lg-10">
+          <%= f.file_field :image, :class => 'form-control' %>
+        </div>
+        <%=f.error_span(:image) %>
+      </div><br><br><br><br>
+
+      <div class="form-group">
+        <%= f.label :tag_line_for_photo, :class => 'control-label col-lg-2' %>
+        <div class="col-lg-10">
+          <%= f.text_field :tag_line_for_photo, :class => 'form-control' %>
+        </div>
+        <%=f.error_span(:tag_line_for_photo) %>
+      </div><br><br><br><br>
+
+      <div class="form-group">
+        <div class="col-lg-offset-2 col-lg-10">
+          <center><%= f.submit 'Add Photo', :class => 'btn btn-primary' %></center>
+        </div>
       </div>
-    </div>
-  <% end %>
-  <% end %>
+    <% end %>
+  <% end %><br>
+<% else %>
+  <center><h1>No more albums to be added</h1></center>
+<% end %>
 
 
 
 
 <center>
   <% if current_user.id == @album.user_id %>
-    <%= link_to 'Edit', edit_album_path(@album), :class => 'btn btn-primary' %> |
-    
+    <%= link_to 'Edit', edit_album_path(@album), :class => 'btn btn-primary' %>
   <% end %>
 </center>
 <%= link_to 'Back', albums_path, :class => 'btn btn-primary' %>

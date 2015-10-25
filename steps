@@ -1,0 +1,33 @@
+This folder contains zipped file first unzip it to the directory you want and and then follow the below given steps for full setup on your machine.
+
+For installing this application one must follow these steps
+
+1. First go to directory and run Bundle Install .
+
+2. After bundle is complete run rake db:create and you must have mysql installed on your machine 
+
+3. After rake db:create run rake db:migrate
+
+4. In this application many small small functionalities are installed with gem or without use of gem.
+
+gems used are twitter-bootstrap-rails,devise, carrierwave,mysql2,will_paginate etc.
+
+This application basically deals with Image uploading to an album where user can upload maximum 25 photos in an album(here I had made it to 2 for testing purpose). If album has more than 2 images it wont show the photo adding form.
+
+Here user can edit his/her albums and photos but can only see other users images and albums.
+
+user can search albums by their name(extra)
+
+Pagination is also there 2 albums per page(for testing purpose)
+
+Sign in / sign up functionalities.
+
+I have used bootstrap to many places but not totally implemented as it was told to me functionality is important not UI.
+
+
+Thanks for reading this.
+
+
+
+
+

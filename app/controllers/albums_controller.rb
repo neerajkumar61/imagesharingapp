@@ -44,7 +44,6 @@ class AlbumsController < ApplicationController
   # end
   
   def create
-    byebug
     @user = User.find(current_user)
     @album = @user.albums.create!(params[:album])
     redirect_to album_path(@album)

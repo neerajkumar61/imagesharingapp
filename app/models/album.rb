@@ -3,15 +3,15 @@ class Album < ActiveRecord::Base
 	belongs_to	:user
 	# Album has many photos
 	has_many :photos, :dependent => :destroy
-	# accepts_nested_attributes_for :photos, allow_destroy: true
-	
 
- #  def self.search(search)
-	#   if search
-	#     self.where("albumname_name like ?", "%#{search}%")
-	#   else
-	#     self.all
-	#   end
+	# validate :no_of_images
+
+	# def no_of_images
+	# 	byebug
+	# 	if @album.photos.count < 2
+	# 		self.errors.add(:base, "Create another album to add images")
+	# 	end
+		
 	# end
 
 end
